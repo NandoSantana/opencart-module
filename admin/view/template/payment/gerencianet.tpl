@@ -53,6 +53,7 @@
               <?php if ($error_token) { ?>
                 <span class="error"><?php echo $error_token; ?></span>
               <?php } ?>
+              <span style="font-size: 10px;">Caso você não possua um token de integração, você pode gerá-lo através do menu <a href="https://accounts.gerencianet.com.br/login/externo/pagamentos?url=aHR0cHM6Ly9nby5nZXJlbmNpYW5ldC5jb20uYnIvIy9kZXNlbnZvbHZlZG9yL3Rva2Vu" target="_blank">desenvolvedor/token</a> de sua conta Gerencianet.</span>
             </td>
           </tr>
           <tr>
@@ -85,6 +86,16 @@
             </td>
             <td>
               <input type="text" name="gerencianet_sort_order" value="<?php echo $gerencianet_sort_order; ?>" size="1" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="required">*</span> <?php echo $entry_callback_url; ?>
+            </td>
+            <td>
+              <span style="font-size: 10px;">Acesse sua conta Gerencianet e entre no menu <a href="https://accounts.gerencianet.com.br/login/externo/pagamentos?url=aHR0cHM6Ly9nby5nZXJlbmNpYW5ldC5jb20uYnIvIy9kZXNlbnZvbHZlZG9yL25vdGlmaWNhY29lcw==" target="_blank">desenvolvedor/notificacoes</a> e cadastre a seguinte url de notificação:</span>
+              <br/>
+              <span style="border: 1px dotted gray; margin-top: 5px; width: auto; padding: 5px; display:inline-block; font-size: 10px;"><?php echo $gerencianet_callback_url; ?></span>
             </td>
           </tr>
         </table>

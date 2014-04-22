@@ -20,6 +20,7 @@ $_['entry_token']         = 'Token de Acesso:';
 $_['entry_return_url']    = 'Url para Retorno:';
 $_['entry_status']        = 'Situação:';
 $_['entry_sort_order']    = 'Ordem de Exibição:';
+$_['entry_callback_url']    = 'Url de Notificação:';
 
 $_['error_permission']    = 'Atenção, verifique suas permissões de acesso!';
 $_['error_token']         = '* Digite o seu Token';

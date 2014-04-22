@@ -26,9 +26,16 @@ class ControllerPaymentGerencianet extends Controller {
         $this->data['entry_return_url'] = $this->language->get('entry_return_url');
         $this->data['entry_status'] = $this->language->get('entry_status');
         $this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+        $this->data['entry_callback_url'] = $this->language->get('entry_callback_url');
         $this->data['button_save'] = $this->language->get('button_save');
         $this->data['button_cancel'] = $this->language->get('button_cancel');
         $this->data['tab_general'] = $this->language->get('tab_general');
+
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
+            $this->model_setting_setting->editSetting('gerencianet', $this->request->post);
+            $this->session->data['success'] = $this->language->get('text_success');
+            $this->redirect(HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token']);
+        }
 
         if (isset($this->error['warning'])) {
             $this->data['error_warning'] = $this->error['warning'];
@@ -64,9 +71,18 @@ class ControllerPaymentGerencianet extends Controller {
 
         $this->data['breadcrumbs'] = $this->document->breadcrumbs;
                     
-        $this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/gerencianet/save&token=' . $this->session->data['token'];
+        $this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/gerencianet&token=' . $this->session->data['token'];
             
         $this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token'];
+
+        if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+            $client_url = HTTPS_SERVER;
+        } else {
+            $client_url = HTTP_SERVER;
+        }
+        $client_url = str_replace("admin/", "", HTTP_SERVER);
+        $this->data['gerencianet_callback_url'] = $client_url."index.php?route=payment/gerencianet/callback";
+
                 
         if (isset($this->request->post['gerencianet_token'])) {
             $this->data['gerencianet_token'] = $this->request->post['gerencianet_token'];
@@ -80,12 +96,6 @@ class ControllerPaymentGerencianet extends Controller {
             if($this->config->get('gerencianet_return_url')) {
                 $this->data['gerencianet_return_url'] = $this->config->get('gerencianet_return_url');    
             } else {
-                if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
-                    $client_url = HTTPS_SERVER;
-                } else {
-                    $client_url = HTTP_SERVER;
-                }
-                $client_url = str_replace("admin/", "", HTTP_SERVER);
                 $this->data['gerencianet_return_url'] = $client_url."index.php?route=checkout/success";
             }
         }
@@ -113,18 +123,6 @@ class ControllerPaymentGerencianet extends Controller {
         );
 
         $this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
-    }
-
-    public function save() {
-        $this->load->language('payment/gerencianet');    
-        $this->load->model('setting/setting');
-        if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
-            $this->model_setting_setting->editSetting('gerencianet', $this->request->post);
-            $this->session->data['success'] = $this->language->get('text_success');
-            $this->redirect(HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token']);
-        } else {
-            $this->redirect(HTTPS_SERVER . 'index.php?route=payment/gerencianet&token=' . $this->session->data['token']);
-        }
     }
 
     private function validate() {
