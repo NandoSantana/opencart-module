@@ -10,8 +10,8 @@
 class ControllerPaymentGerencianet extends Controller
 {
 
-    const CHARGE_GENERATION_URL = 'http://pedroskywalker.gerencianet.com.br:5000/api/pagamento/xml';
-    const CHARGE_HISTORY_URL = 'http://pedroskywalker.gerencianet.com.br:5000/api/notificacao/xml';
+    const CHARGE_GENERATION_URL = 'https://go.gerencianet.com.br/api/pagamento/xml';
+    const CHARGE_HISTORY_URL = 'https://go.gerencianet.com.br/api/notificacao/xml';
 
     private $xml_gerencianet;
 
