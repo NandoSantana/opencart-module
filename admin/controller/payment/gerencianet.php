@@ -110,11 +110,12 @@ class ControllerPaymentGerencianet extends Controller {
             $this->data['gerencianet_status'] = $this->config->get('gerencianet_status');
         }
 
-        if (isset($this->request->post['gerencianet_sort_order'])) {
-            $this->data['gerencianet_sort_order'] = $this->request->post['gerencianet_sort_order'];
-        } else {
-            $this->data['gerencianet_sort_order'] = $this->config->get('gerencianet_sort_order');
-        }
+        // if (isset($this->request->post['gerencianet_sort_order'])) {
+        //     $this->data['gerencianet_sort_order'] = $this->request->post['gerencianet_sort_order'];
+        // } else {
+        //     $this->data['gerencianet_sort_order'] = $this->config->get('gerencianet_sort_order');
+        // }
+        $this->data['gerencianet_sort_order'] = 1;
 
         $this->template = 'payment/gerencianet.tpl';
         $this->children = array(

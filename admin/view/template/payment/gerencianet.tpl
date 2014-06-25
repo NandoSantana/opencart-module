@@ -80,15 +80,15 @@
               </select>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>
               <?php echo $entry_sort_order; ?>
             </td>
             <td>
               <input type="text" name="gerencianet_sort_order" value="<?php echo $gerencianet_sort_order; ?>" size="1" />
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+<!--           <tr>
             <td>
               <span class="required">*</span> <?php echo $entry_callback_url; ?>
             </td>
@@ -97,7 +97,7 @@
               <br/>
               <span style="border: 1px dotted gray; margin-top: 5px; width: auto; padding: 5px; display:inline-block; font-size: 10px;"><?php echo $gerencianet_callback_url; ?></span>
             </td>
-          </tr>
+          </tr> -->
         </table>
       </form>
     </div>

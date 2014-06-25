@@ -57,6 +57,17 @@ class ControllerPaymentGerencianet extends Controller
         require_once dirname(__FILE__) . '/lib-gerencianet/simple_xml_gerencianet.php';
         $xml = new SimpleXMLGerencianet('<?xml version="1.0" encoding="utf-8"?><integracao></integracao>');
 
+
+
+        if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+            $client_url = HTTPS_SERVER;
+        } else {
+            $client_url = HTTP_SERVER;
+        }
+        $client_url = str_replace("admin/", "", HTTP_SERVER);
+        $gerencianet_callback_url = $client_url."index.php?route=payment/gerencianet/callback";
+
+
         //tag cliente
         $cliente = $xml->addChild('cliente');
         if($order_info['email']) {
@@ -91,6 +102,7 @@ class ControllerPaymentGerencianet extends Controller
         //tag retorno
         $retorno = $xml->addChild('retorno');
         $retorno->addChild('identificador', 'opencart_' . $order_info['order_id']);
+        $retorno->addChild('urlNotificacao', $gerencianet_callback_url);
         if($this->config->get('gerencianet_return_url')) {
             $retorno->addChild('url')->addCData($this->config->get('gerencianet_return_url'));
         }
