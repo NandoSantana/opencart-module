@@ -250,6 +250,16 @@ class ControllerPaymentGerencianet extends Controller
                 case 'vencido':
                     $order_status_id =(int)14;
                 break;
+                case 'vencido':
+                    $order_status_id =(int)14;
+                break;
+                case 'contestado':
+                    $order_status_id =(int)13;
+                break;
+                case 'devolvido':
+                    $order_status_id =(int)1;
+                break;
+                contestado
             }
             if($order_status_id != null) {
                 $identificador = $result->resposta->identificador;
