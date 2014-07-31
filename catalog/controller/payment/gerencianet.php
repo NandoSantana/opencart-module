@@ -254,10 +254,10 @@ class ControllerPaymentGerencianet extends Controller
                     $order_status_id =(int)14;
                 break;
                 case 'contestado':
-                    $order_status_id =(int)13;
+                    $order_status_id =(int)1;
                 break;
                 case 'devolvido':
-                    $order_status_id =(int)1;
+                    $order_status_id =(int)11;
                 break;
             }
             if($order_status_id != null) {
