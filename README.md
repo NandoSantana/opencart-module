@@ -31,19 +31,3 @@ Para conseguir um token de integração de sua conta Gerencianet com sua loja op
 
 Ao entrar no sistema vá ao menu "Desenvolvedor->Token De Integração" e nesta tela gere seu token de integração caso não possua nenhum.
 
-
-
-
-Callback (Notificações) de pagamento
-===============
-
-Para que seu sistema opencart seja avisado dos pagamentos realizados você deve cadastrar uma url de callback do opencart.
-
-Para isso acesse sua conta Gerencianet e vá ao menu "Desenvolvedor->Notificações" e cadastre a seguinte url:
-
-"seu_dominio"/opencart/index.php?route=payment/gerencianet/callback
-
-Troque "seu_dominio" para o dominio de sua loja, por exemplo: "https://lojaopencart.com.br", ficando o exemplo da url de notificação assim:
-
-https://lojaopencart.com.br/opencart/index.php?route=payment/gerencianet/callback
-
