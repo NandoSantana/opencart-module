@@ -259,7 +259,6 @@ class ControllerPaymentGerencianet extends Controller
                 case 'devolvido':
                     $order_status_id =(int)1;
                 break;
-                contestado
             }
             if($order_status_id != null) {
                 $identificador = $result->resposta->identificador;
